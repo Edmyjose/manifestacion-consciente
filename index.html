@@ -161,7 +161,7 @@
         const text = await response.text();
 
         if (text.includes("OK")) {
-          responseMsg.innerText = "¡Libro enviado! Revisa tu correo 📩";
+          responseMsg.innerText = "¡Libro enviado! 📩 Revisa tu bandeja de entrada y también la carpeta de SPAM o Promociones.";
           form.reset();
         } else {
           responseMsg.innerText = "Error: " + text;
