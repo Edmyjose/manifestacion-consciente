@@ -81,7 +81,7 @@
 <body class="bg-gray-50 font-sans">
   <!-- Hero Section (Existing) -->
   <section
-    class="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-900 to-gray-900 text-white py-8 sm:py-16">
+    class="relative min-h-screen flex items-center justify-center bg-[rgba(255,215,0,1)] text-white py-8 sm:py-16">
     <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('images/cover.avif');">
       <div class="absolute inset-0 bg-black bg-opacity-30"></div>
     </div>
@@ -94,16 +94,16 @@
         comunidad que transforma pensamientos en resultados.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center max-w-2xl mx-auto">
-        <!-- Amazon Book Button with QR
-        <div class="flex flex-col items-center w-full sm:w-auto">
+        <!-- Amazon Book Button with QR -->
+        <!-- <div class="flex flex-col items-center w-full sm:w-auto">
           <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-lg mb-4 flex items-center justify-center">
             <img src="images/qr_amazon_B0F925R43N.png" alt="Qr Amazon" class="max-w-full p-2 h-auto" />
-          </div>
-          <a href="#" class="bg-transparent">
-            <img src="images/btn_amazon.png" alt="Amazon Button" class="w-48 h-auto" />
-          </a>
-        </div> -->
-        <!-- Google Play App Button with QR
+          </div> -->
+        <a href="https://www.amazon.com/dp/B0F925R43N" target="_blank" class="bg-transparent">
+          <img src="images/btn_amazon.png" alt="Amazon Button" class="w-48 h-auto" />
+        </a>
+      </div>
+      <!-- Google Play App Button with QR
         <div class="flex flex-col items-center w-full sm:w-auto">
           <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white p-2 rounded-lg mb-4 flex items-center justify-center">
             <img src="images/qr_app.png" alt="Qr App" class="max-w-full h-auto bg-white" />
@@ -112,35 +112,92 @@
             <img src="images/btn_playstore.png" alt="Play Store Button" class="w-48 h-auto" />
           </a>
         </div> -->
-      </div>
-      ""
+    </div>
+    ""
     </div>
   </section>
 
+  <section id="descargar-libro" class="py-16 bg-green-900">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+        Descarga gratuita del resumen del libro
+      </h2>
+      <p class="text-[rgba(255,165,0,1)] mb-8 max-w-2xl mx-auto">
+        Ingresa tu correo para recibir el resumen gratuito del libro en formato PDF y comienza tu transformación hoy
+        mismo.
+      </p>
+      <div class="max-w-md mx-auto bg-[rgba(255,165,0,1)] p-6 rounded-lg shadow-lg">
+        <form id="downloadForm" class="space-y-4">
+          <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required
+            class="w-full p-3 border border-green-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-900" />
+          <button type="submit"
+            class="w-full bg-green-900 text-[rgba(255,195,0,1)] px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold">
+            📥 Descargar Resumen Gratis
+          </button>
+        </form>
+        <p id="responseMsg" class="mt-4 text-green-900 font-medium"></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyHPwWtVLJdHPZt7YAAeFjWueLvTnZbiakF7Ei0q_yWt7gHIs3gqURjQOz-oZ2FDOvs0Q/exec'; // tu URL de Script
+    const form = document.getElementById('downloadForm');
+    const responseMsg = document.getElementById('responseMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form); // 👈 ESTA ES LA CLAVE
+
+      responseMsg.innerText = "Enviando el libro...";
+
+      try {
+        const response = await fetch(scriptURL, {
+          method: 'POST',
+          body: formData, // 👈 ENVÍA COMO FORMULARIO HTML NATIVO
+        });
+
+        const text = await response.text();
+
+        if (text.includes("OK")) {
+          responseMsg.innerText = "¡Libro enviado! Revisa tu correo 📩";
+          form.reset();
+        } else {
+          responseMsg.innerText = "Error: " + text;
+          console.warn("Respuesta del servidor:", text);
+        }
+      } catch (error) {
+        responseMsg.innerText = "Hubo un error al enviar.";
+        console.error(error);
+      }
+    });
+  </script>
+
   <!-- About the Book Section (Existing) -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-[rgba(255,165,0,1)]">
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
       <div class="md:w-1/2 h-96 flex items-center justify-center hover-scale">
         <img src="images/mockup-book.png" alt="Libro Mockup" class="max-w-full h-auto" />
       </div>
       <div class="container mx-auto px-4">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 animate-slide-up">
+        <h2 class="text-green-900 text-3xl md:text-4xl font-bold text-center mb-8 animate-slide-up">
           Un método claro. Una guía práctica. Un despertar transformador.
         </h2>
         <div class="max-w-3xl mx-auto text-center">
-          <p class="text-gray-700 mb-6">
+          <p class="text-green-900 mb-6">
             “Solo pide y se te dará” suena bien, pero ¿cuántas veces pediste
             sin recibir?
             <strong>Fundamentos Prácticos de la Ley de Atracción</strong> es
             un mapa basado en ciencia y sabiduría ancestral para manifestar
             con intención.
           </p>
-          <p class="text-gray-700 mb-6">
+          <p class="text-green-900 mb-6 font-bold">
             Domina el Ciclo P-E-A-R (Pensamiento – Emoción – Acción –
             Resultado), respaldado por neurociencia, epigenética y física
             cuántica, para transformar tu mente en tu realidad.
           </p>
-          <ul class="text-left list-disc list-inside text-gray-700 mb-6">
+          <ul class="text-left list-disc list-inside text-green-900 mb-6">
             <li>Rompe patrones limitantes.</li>
             <li>Convierte pensamientos en energía creadora.</li>
             <li>Aplica visualización, gratitud, reencuadre y meditación.</li>
@@ -150,7 +207,7 @@
           <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
             <!-- Amazon Book Button with QR -->
             <div class="flex flex-col items-center w-full sm:w-auto">
-              <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-lg mb-4 flex items-center justify-center">
+              <div class="w-24 h-24 sm:w-32 sm:h-32 bg-transparent rounded-lg mb-4 flex items-center justify-center">
                 <img src="images/qr_amazon_B0F925R43N.png" alt="Qr Amazon" class="max-w-full p-2 h-auto" />
               </div>
               <a href="https://www.amazon.com/dp/B0F925R43N" target="_blank" class="bg-transparent">
@@ -159,10 +216,10 @@
             </div>
             <!-- Google Play App Button with QR -->
             <div class="flex flex-col items-center w-full sm:w-auto">
-              <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-lg mb-4 flex items-center justify-center">
+              <div class="w-24 h-24 sm:w-32 sm:h-32 bg-transparent rounded-lg mb-4 flex items-center justify-center">
               </div>
               <a href="assets/summary_es.pdf" target="_blank"
-                class="bg-green-600 w-48 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">Descargar
+                class="bg-green-900 w-48 text-[rgba(255,195,0,1)] px-6 py-2 rounded-lg hover:bg-green-700 transition">Descargar
                 Resumen
                 Gratis
               </a>
@@ -174,57 +231,57 @@
   </section>
 
   <!-- P-E-A-R Cycle Section (Existing) -->
-  <section class="py-16 bg-gray-100">
+  <section class="py-16 bg-green-900">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+      <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
         El Ciclo P-E-A-R: La fórmula para manifestar
       </h2>
-      <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
+      <p class="text-[rgba(255,165,0,1)] mb-6 max-w-2xl mx-auto">
         No es magia. Es método. Tus <strong>Pensamientos</strong> generan
         <strong>Emociones</strong>, que impulsan <strong>Acciones</strong>, y
         crean <strong>Resultados</strong> que refuerzan tu realidad.
       </p>
-      <div class="h-64 bg-white flex items-center justify-center mb-6 hover-scale">
-        <img src="images/ciclo_pear.png" alt="Qr App" class="h-64 bg-white" />
+      <div class="h-64 bg-green-900 flex items-center justify-center mb-6 hover-scale">
+        <img src="images/ciclo_pear.png" alt="Qr App" class="h-64" />
       </div>
     </div>
   </section>
 
   <!-- NEW: Why It Works Section -->
-  <section class="py-16 bg-gray-100">
+  <section class="py-16 bg-[rgba(255,165,0,1)]">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+      <h2 class="text-green-900 text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
         ¿Por qué funciona? Ciencia y sabiduría unidas
       </h2>
-      <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
+      <p class="text-green-900 mb-8 max-w-2xl mx-auto">
         No es magia, es un proceso validado por la neurociencia y la sabiduría
         ancestral. Descubre cómo el Ciclo P-E-A-R transforma tus pensamientos
         en resultados.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale">
+        <div class="bg-green-900 p-6 rounded-lg shadow-lg hover-scale">
           <span class="text-yellow-400 text-3xl mb-4 block">🧠</span>
-          <h3 class="text-xl font-bold text-green-600 mb-2">
+          <h3 class="text-xl font-bold text-white mb-2">
             Neuroplasticidad
           </h3>
-          <p class="text-gray-700">
+          <p class="text-[rgba(255,165,0,1)]">
             Tus pensamientos reprograman tu cerebro, creando nuevos caminos
             para el éxito.
           </p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale">
+        <div class="bg-green-900 p-6 rounded-lg shadow-lg hover-scale">
           <span class="text-yellow-400 text-3xl mb-4 block">❤️</span>
-          <h3 class="text-xl font-bold text-green-600 mb-2">
+          <h3 class="text-xl font-bold text-white mb-2">
             Coherencia Cardíaca
           </h3>
-          <p class="text-gray-700">
+          <p class="text-[rgba(255,165,0,1)]">
             La gratitud sincroniza tu corazón y mente, elevando tu vibración.
           </p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale">
+        <div class="bg-green-900 p-6 rounded-lg shadow-lg hover-scale">
           <span class="text-yellow-400 text-3xl mb-4 block">⚡</span>
-          <h3 class="text-xl font-bold text-green-600 mb-2">SARA</h3>
-          <p class="text-gray-700">
+          <h3 class="text-xl font-bold text-white mb-2">SARA</h3>
+          <p class="text-[rgba(255,165,0,1)]">
             Tu cerebro filtra oportunidades según lo que enfocas, guiado por
             tus intenciones.
           </p>
@@ -234,18 +291,18 @@
   </section>
 
   <!-- App Section (Existing, Adjusted for Consistency) -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-green-900">
     <div class="container mx-auto px-6 md:px-8 lg:px-12 flex flex-col md:flex-row items-center gap-8">
       <div class="md:w-1/2">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+        <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
           Convierte el conocimiento en hábito
         </h2>
-        <p class="text-gray-700 mb-6">
+        <p class="text-[rgba(255,165,0,1)] mb-6">
           La app <strong>Manifestación Consciente</strong> es tu compañero
           diario. Personaliza afirmaciones, rastrea emociones y lleva el Ciclo
           P-E-A-R a tu vida.
         </p>
-        <ul class="list-disc list-inside text-gray-700 mb-6">
+        <ul class="list-disc list-inside text-[rgba(255,165,0,1)] mb-6">
           <li>🔔 Afirmaciones en tu fondo de pantalla.</li>
           <li>📅 Ejercicios diarios de gratitud y visualización.</li>
           <li>🧠 Registro de pensamientos y emociones.</li>
@@ -269,13 +326,13 @@
   </section>
 
   <!-- Video Series Section (Existing) -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-[rgba(255,165,0,1)]">
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+        <h2 class="text-green-900 text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
           Visualiza. Vibra. Despierta tu poder.
         </h2>
-        <p class="text-gray-700 mb-6 max-w-2xl mx-auto">
+        <p class="text-green-700 mb-6 max-w-2xl mx-auto">
           Nuestra serie estilo cómic lleva los conceptos del libro a un
           formato visual y emocional.
         </p>
@@ -283,79 +340,79 @@
       <!-- Carrusel de videos de YouTube -->
       <div class="relative">
         <div
-          class="overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500 scroll-smooth">
+          class="overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-track-green-900 scrollbar-thumb-[rgba(255,165,0,1)] hover:scrollbar-thumb-[rgba(255,215,0,1)] scroll-smooth">
           <div class="flex space-x-6 pb-4 cursor-grab active:cursor-grabbing w-max" id="carousel-container">
             <!-- Video 1 -->
-            <div class="flex-shrink-0 w-64 bg-gray-100 rounded-lg overflow-hidden shadow-lg hover-scale">
+            <div class="flex-shrink-0 w-64 bg-green-900 rounded-lg overflow-hidden shadow-lg hover-scale">
               <div class="aspect-[9/16] bg-gray-200 flex items-center justify-center">
                 <iframe class="w-full h-full border-0" src="https://www.youtube.com/embed/R4NLoHkhehs"
                   title="Episodio 1" allowfullscreen></iframe>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-lg mb-2">
+                <h3 class="text-white font-semibold text-lg mb-2">
                   Episodio 1: Ciclo P-E-A-R
                 </h3>
-                <p class="text-gray-600 text-sm">
+                <p class="text-[rgba(255,165,0,1)] text-sm">
                   Descubre el poder que llevas dentro...
                 </p>
               </div>
             </div>
             <!-- Video 2 -->
-            <div class="flex-shrink-0 w-64 bg-gray-100 rounded-lg overflow-hidden shadow-lg hover-scale">
+            <div class="flex-shrink-0 w-64 bg-green-900 rounded-lg overflow-hidden shadow-lg hover-scale">
               <div class="aspect-[9/16] bg-gray-200 flex items-center justify-center">
                 <iframe class="w-full h-full border-0" src="https://www.youtube.com/embed/A1f4FEt6_bU"
                   title="Episodio 2" allowfullscreen></iframe>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-lg mb-2">
+                <h3 class="text-white font-semibold text-lg mb-2">
                   Episodio 2: El Pensamiento
                 </h3>
-                <p class="text-gray-600 text-sm">
+                <p class="text-[rgba(255,165,0,1)] text-sm">
                   El viaje hacia tu mejor versión...
                 </p>
               </div>
             </div>
             <!-- Video 3 -->
-            <div class="flex-shrink-0 w-64 bg-gray-100 rounded-lg overflow-hidden shadow-lg hover-scale">
+            <div class="flex-shrink-0 w-64 bg-green-900 rounded-lg overflow-hidden shadow-lg hover-scale">
               <div class="aspect-[9/16] bg-gray-200 flex items-center justify-center">
                 <iframe class="w-full h-full border-0" src="https://www.youtube.com/embed/" title="Episodio 3"
                   allowfullscreen></iframe>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-lg mb-2">
+                <h3 class="text-white font-semibold text-lg mb-2">
                   Episodio 3: El Poder Interior
                 </h3>
-                <p class="text-gray-600 text-sm">
+                <p class="text-[rgba(255,165,0,1)] text-sm">
                   Conecta con tu fuerza interior...
                 </p>
               </div>
             </div>
             <!-- Video 4 -->
-            <div class="flex-shrink-0 w-64 bg-gray-100 rounded-lg overflow-hidden shadow-lg hover-scale">
+            <div class="flex-shrink-0 w-64 bg-green-900 rounded-lg overflow-hidden shadow-lg hover-scale">
               <div class="aspect-[9/16] bg-gray-200 flex items-center justify-center">
                 <iframe class="w-full h-full border-0" src="https://www.youtube.com/embed/" title="Episodio 4"
                   allowfullscreen></iframe>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-lg mb-2">
+                <h3 class="text-white font-semibold text-lg mb-2">
                   Episodio 4: La Manifestación
                 </h3>
-                <p class="text-gray-600 text-sm">
+                <p class="text-[rgba(255,165,0,1)] text-sm">
                   Materializa tus sueños en realidad...
                 </p>
               </div>
             </div>
             <!-- Video 5 -->
-            <div class="flex-shrink-0 w-64 bg-gray-100 rounded-lg overflow-hidden shadow-lg hover-scale">
+            <div class="flex-shrink-0 w-64 bg-green-900 rounded-lg overflow-hidden shadow-lg hover-scale">
               <div class="aspect-[9/16] bg-gray-200 flex items-center justify-center">
                 <iframe class="w-full h-full border-0" src="https://www.youtube.com/embed/" title="Episodio 2"
                   allowfullscreen></iframe>
               </div>
               <div class="p-4">
-                <h3 class="font-semibold text-lg mb-2">
+                <h3 class="text-white font-semibold text-lg mb-2">
                   Episodio 5: El Maestro Interior
                 </h3>
-                <p class="text-gray-600 text-sm">
+                <p class="text-[rgba(255,165,0,1)] text-sm">
                   Conviértete en el maestro de tu destino...
                 </p>
               </div>
@@ -364,14 +421,14 @@
         </div>
         <!-- Indicador de scroll -->
         <div class="text-center mt-6">
-          <p class="text-gray-500 text-sm">
+          <p class="text-green-700 text-sm">
             ← Desliza para ver más episodios →
           </p>
         </div>
       </div>
       <div class="text-center mt-8">
         <a href="https://www.youtube.com/playlist?list=PLQk7j56KMwG7I9OOomLRcedqibaEDosaR" target="_blank"
-          class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition inline-flex items-center">
+          class="bg-green-900 text-[rgba(255,165,0,1)] px-6 py-3 rounded-lg hover:bg-green-700 transition inline-flex items-center">
           🎥 Ver todos los episodios en YouTube
         </a>
       </div>
@@ -379,48 +436,42 @@
   </section>
 
   <!-- NEW: Success Stories Section -->
-  <section class="py-16 bg-gray-100">
+  <section class="py-16  bg-green-900">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
+      <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
         Historias reales, resultados reales
       </h2>
-      <p class="text-gray-700 mb-8 max-w-2xl mx-auto">
+      <p class="text-[rgba(255,165,0,1)] mb-8 max-w-2xl mx-auto">
         Personas como tú han transformado sus vidas con el Ciclo P-E-A-R y la
         app. Descubre cómo lo lograron.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale">
-          <p class="text-gray-700 mb-4">
+        <div class="bg-[rgba(255,165,0,1)] p-6 rounded-lg shadow-lg hover-scale">
+          <p class="text-green-900 mb-4">
             "Pasé de sentirme atrapada en mi trabajo a lanzar mi propio
             negocio. La app me ayudó a mantener mis afirmaciones y hábitos
             diarios."
           </p>
-          <p class="font-semibold text-green-600">— Laura M., Chile</p>
+          <p class="font-semibold text-green-700">— Laura M., Chile</p>
         </div>
-        <div class="bg-white p-6 rounded-lg shadow-lg hover-scale">
-          <p class="text-gray-700 mb-4">
+        <div class="bg-[rgba(255,165,0,1)] p-6 rounded-lg shadow-lg hover-scale">
+          <p class="text-green-900 mb-4">
             "El ejercicio de gratitud cambió mi perspectiva. Ahora veo
             oportunidades donde antes veía obstáculos."
           </p>
-          <p class="font-semibold text-green-600">— Carlos V., España</p>
+          <p class="font-semibold text-green-700">— Carlos V., España</p>
         </div>
-      </div>
-    </div>
-    <div class="container mx-auto px-4 text-center">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="p-6 bg-gray-50 rounded-lg shadow-lg hover-scale">
-          <p class="text-gray-700 mb-4">
-            “Este libro me hizo entender por qué mi vida se repetía como un
+        <div class="bg-[rgba(255,165,0,1)] p-6 rounded-lg shadow-lg hover-scale">
+          <p class="text-green-900 mb-4">“Este libro me hizo entender por qué mi vida se repetía como un
             ciclo. Ahora tengo el control.”
           </p>
-          <p class="font-semibold text-green-600">— Mariana C., Colombia</p>
+          <p class="font-semibold text-green-700">— Mariana C., Colombia</p>
         </div>
-        <div class="p-6 bg-gray-50 rounded-lg shadow-lg hover-scale">
-          <p class="text-gray-700 mb-4">
-            “La app me ayudó a sostener mis afirmaciones y cambiar mi enfoque
+        <div class="bg-[rgba(255,165,0,1)] p-6 rounded-lg shadow-lg hover-scale">
+          <p class="text-green-900 mb-4">“La app me ayudó a sostener mis afirmaciones y cambiar mi enfoque
             diario. ¡Por fin veo resultados!”
           </p>
-          <p class="font-semibold text-green-600">— Andrés R., México</p>
+          <p class="font-semibold text-green-700">— Andrés R., México</p>
         </div>
       </div>
     </div>
@@ -504,88 +555,96 @@
 
   <!-- FAQ Section Refinada -->
   <!-- FAQ Section Refinada -->
-  <section class="py-16 bg-white">
+  <section class="py-16 bg-[rgba(255,165,0,1)]">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-10">Preguntas Frecuentes</h2>
+      <h2 class="text-green-900 text-3xl md:text-4xl font-bold text-center mb-10">Preguntas Frecuentes</h2>
       <div class="max-w-3xl mx-auto space-y-6">
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿Por qué sigo repitiendo los mismos patrones aunque trato de
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿Por qué sigo repitiendo los mismos patrones aunque trato de
             pensar en positivo?</h3>
-          <p class="text-gray-700">Porque la manifestación no ocurre solo por pensar bonito. Lo que crea tu realidad no
+          <p class="text-[rgba(255,165,0,1)]">Porque la manifestación no ocurre solo por pensar bonito. Lo que crea tu
+            realidad no
             es
             solo el pensamiento, sino la emoción y la acción alineada. El ciclo P-E-A-R te enseña a identificar y
             transformar esos patrones inconscientes que sabotean tus resultados, y a instalar nuevos con intención.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">He intentado aplicar la Ley de Atracción pero nada cambia...
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">He intentado aplicar la Ley de Atracción pero nada cambia...
             ¿por qué?</h3>
-          <p class="text-gray-700">Porque seguramente te enseñaron solo una parte del proceso. Visualizar sin sentir,
+          <p class="text-[rgba(255,165,0,1)]">Porque seguramente te enseñaron solo una parte del proceso. Visualizar sin
+            sentir,
             pedir sin accionar, repetir frases sin coherencia no genera resultados sostenibles. Este libro te guía paso
             a
             paso para alinear pensamiento, emoción, acción y resultado de forma consciente y realista.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿Qué diferencia a este libro de otros sobre la Ley de
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿Qué diferencia a este libro de otros sobre la Ley de
             Atracción?</h3>
-          <p class="text-gray-700">La mayoría de los libros repiten frases como “visualiza y se te dará”. Este no.
+          <p class="text-[rgba(255,165,0,1)]">La mayoría de los libros repiten frases como “visualiza y se te dará”.
+            Este no.
             <strong>Fundamentos Prácticos de la Ley de Atracción</strong> se basa en neurociencia, física cuántica y
             epigenética, enseñándote a aplicar el ciclo P-E-A-R paso a paso con ejercicios prácticos. Es una guía para
             manifestar con intención, no desde la ilusión.
           </p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿Necesito tener experiencia previa o conocimientos sobre la
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿Necesito tener experiencia previa o conocimientos sobre la
             Ley de Atracción?</h3>
-          <p class="text-gray-700">No. Todo está explicado de forma sencilla y práctica. El libro y la app están
+          <p class="text-[rgba(255,165,0,1)]">No. Todo está explicado de forma sencilla y práctica. El libro y la app
+            están
             diseñados
             para guiarte paso a paso, incluso si nunca has leído sobre manifestación o desarrollo personal.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿La app funciona sola o necesita el libro?</h3>
-          <p class="text-gray-700">Ambos se complementan. Puedes usar la app por sí sola para afirmaciones,
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿La app funciona sola o necesita el libro?</h3>
+          <p class="text-[rgba(255,165,0,1)]">Ambos se complementan. Puedes usar la app por sí sola para afirmaciones,
             recordatorios
             y ejercicios diarios. Pero si quieres profundizar en el proceso de manifestación, el libro te dará el
             contexto
             y la estructura completa del ciclo P-E-A-R.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿El contenido es espiritual, científico o motivacional?</h3>
-          <p class="text-gray-700">Es una fusión práctica de los tres. Está basado en principios científicos
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿El contenido es espiritual, científico o motivacional?</h3>
+          <p class="text-[rgba(255,165,0,1)]">Es una fusión práctica de los tres. Está basado en principios científicos
             (neurociencia, epigenética y física cuántica), pero integra también sabiduría ancestral y prácticas
             espirituales. Aquí encuentras teoría, pero sobre todo, acción.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿Y si ya he leído otros libros y sigo estancado?</h3>
-          <p class="text-gray-700">Muchos libros te motivan pero no te transforman. Este no se queda en la teoría. Aquí
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿Y si ya he leído otros libros y sigo estancado?</h3>
+          <p class="text-[rgba(255,165,0,1)]">Muchos libros te motivan pero no te transforman. Este no se queda en la
+            teoría. Aquí
             aplicas. Practicas. Regresas a ti. Te observas. Además, tienes el soporte de una app para no soltar el
             proceso. Si lo haces, te vas a mover sí o sí. Desde dentro.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿La app es gratuita?</h3>
-          <p class="text-gray-700">Sí. Puedes descargarla gratis y acceder a múltiples funciones esenciales. En el
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿La app es gratuita?</h3>
+          <p class="text-[rgba(255,165,0,1)]">Sí. Puedes descargarla gratis y acceder a múltiples funciones esenciales.
+            En el
             futuro
             se podrían añadir características premium como sonidos binaurales, rutinas guiadas o diario emocional
             avanzado.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿Cuánto tiempo toma ver resultados?</h3>
-          <p class="text-gray-700">Eso depende de tu compromiso. Al aplicar el ciclo P-E-A-R con intención, puedes notar
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿Cuánto tiempo toma ver resultados?</h3>
+          <p class="text-[rgba(255,165,0,1)]">Eso depende de tu compromiso. Al aplicar el ciclo P-E-A-R con intención,
+            puedes notar
             cambios en tu enfoque y resultados en días o semanas. La constancia y la claridad son clave.</p>
         </div>
 
-        <div class="bg-gray-50 p-6 rounded-lg shadow">
-          <h3 class="text-xl font-bold text-green-600 mb-2">¿Puedo usar esto si ya practico meditación, journaling o
+        <div class="bg-green-900 p-6 rounded-lg shadow">
+          <h3 class="text-xl font-bold text-white mb-2">¿Puedo usar esto si ya practico meditación, journaling o
             visualización?</h3>
-          <p class="text-gray-700">¡Por supuesto! El libro y la app están diseñados para potenciar tus prácticas
+          <p class="text-[rgba(255,165,0,1)]">¡Por supuesto! El libro y la app están diseñados para potenciar tus
+            prácticas
             actuales.
             Puedes integrarlas a tus rutinas diarias y elevar tu capacidad de manifestar conscientemente.</p>
         </div>
