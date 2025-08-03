@@ -2,12 +2,124 @@
 <html lang="es">
 
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1CFSC4PYZH"></script>
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KG647SK5');
+  </script>
+  <!-- End Google Tag Manager -->
+  <!-- Google tag (gtag.js) -->
+  <script>
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-1CFSC4PYZH');
+
+    // Enhanced Analytics Tracking
+    // Track scroll depth
+    let scrollDepth = 0;
+    window.addEventListener('scroll', function () {
+      const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      if (scrollPercent > scrollDepth && scrollPercent % 25 === 0) {
+        scrollDepth = scrollPercent;
+        gtag('event', 'scroll', {
+          'event_category': 'Engagement',
+          'event_label': scrollPercent + '%'
+        });
+      }
+    });
+
+    // Track time on page
+    let startTime = Date.now();
+    window.addEventListener('beforeunload', function () {
+      const timeSpent = Math.round((Date.now() - startTime) / 1000);
+      gtag('event', 'timing_complete', {
+        'name': 'time_on_page',
+        'value': timeSpent
+      });
+    });
+  </script>
+  <!-- End Google Tag Manager -->
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="title" content="Manifestación Consciente | Libro + App para transformar tu realidad con intención" />
   <meta name="description"
     content="Descubre cómo manifestar con intención usando el Ciclo P-E-A-R. Libro + app con ejercicios, afirmaciones y ciencia aplicada. Descarga gratis el resumen." />
-  <title>Manifestación Consciente</title>
+  <meta name="keywords"
+    content="ley de atracción, manifestación consciente, ciclo PEAR, neurociencia, desarrollo personal, libro manifestación, app afirmaciones, visualización, gratitud, meditación">
+  <meta name="author" content="Manifestación Consciente">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://manifestacionconsciente.com/">
+
+  <!-- Google Search Console Verification (reemplaza con tu código) -->
+  <meta name="google-site-verification" content="PvBEdfMdAft-b4UOoWsifqd8u72rmX43S8a-axi3IEs" />
+
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="Manifestación Consciente | Aprende a transformar tu realidad con consciencia">
+  <meta property="og:description"
+    content="Descubre cómo manifestar con intención usando el Ciclo P-E-A-R. Libro + app con ejercicios, afirmaciones y ciencia aplicada.">
+  <meta property="og:image" content="https://manifestavida.lat/images/cover.avif">
+  <meta property="og:url" content="https://manifestavida.lat">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Manifestación Consciente | Libro + App">
+  <meta name="twitter:description"
+    content="Transforma tu realidad con el Ciclo P-E-A-R. Libro + app basados en neurociencia.">
+  <meta name="twitter:image" content="https://manifestavida.lat/images/cover.avif">
+
+  <title>Manifestación Consciente | Libro + App Ciclo P-E-A-R</title>
+
+
+  <!-- Datos Estructurados JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": "Fundamentos Prácticos de la Ley de Atracción",
+    "alternateName": "Manifestación Consciente",
+    "author": {
+      "@type": "Person",
+      "name": "Manifestación Consciente"
+    },
+    "description": "Guía práctica para manifestar con intención usando el Ciclo P-E-A-R, basado en neurociencia, epigenética y física cuántica",
+    "url": "https://www.amazon.com/dp/B0F925R43N",
+    "image": "https://manifestacionconsciente.com/images/cover.avif",
+    "inLanguage": "es",
+    "genre": "Desarrollo Personal",
+    "keywords": "ley de atracción, manifestación, ciclo PEAR, neurociencia, desarrollo personal"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Manifestación Consciente",
+    "description": "App compañera del libro para practicar afirmaciones, gratitud y el Ciclo P-E-A-R diariamente",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Android",
+    "url": "https://play.google.com/store/apps/details?id=com.ejs.affirmations",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .animate-fade-in {
@@ -79,6 +191,10 @@
 </head>
 
 <body class="bg-gray-50 font-sans">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KG647SK5" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <!-- Hero Section (Existing) -->
   <section
     class="relative min-h-screen flex items-center justify-center bg-[rgba(255,215,0,1)] text-white py-8 sm:py-16">
@@ -87,7 +203,7 @@
     </div>
     <div class="text-center z-10 px-4 sm:px-6 lg:px-8 animate-slide-up max-w-6xl mx-auto w-full">
       <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-        ¿Estás manifestando tu vida por accidente o con intención?
+        Manifestación Consciente: ¿Estás manifestando tu vida por accidente o con intención?
       </h1>
       <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-4xl mx-auto">
         Tu mente crea tu realidad. Dirígela con el libro, la app y una
@@ -99,8 +215,11 @@
           <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-lg mb-4 flex items-center justify-center">
             <img src="images/qr_amazon_B0F925R43N.png" alt="Qr Amazon" class="max-w-full p-2 h-auto" />
           </div> -->
-        <a href="https://www.amazon.com/dp/B0F925R43N" target="_blank" class="bg-transparent">
-          <img src="images/btn_amazon.png" alt="Amazon Button" class="w-48 h-auto" />
+        <a href="https://www.amazon.com/dp/B0F925R43N" target="_blank" class="bg-transparent"
+          aria-label="Comprar libro Manifestación Consciente en Amazon"
+          onclick="gtag('event', 'click', {'event_category': 'Amazon', 'event_label': 'Hero Section'});">
+          <img src="images/btn_amazon.png" alt="Comprar libro Fundamentos Prácticos de la Ley de Atracción en Amazon"
+            class="w-48 h-auto" loading="lazy" />
         </a>
       </div>
       <!-- Google Play App Button with QR
@@ -117,6 +236,7 @@
     </div>
   </section>
 
+  <!-- Descarga Resumen gratuito (Existing) -->
   <section id="descargar-libro" class="py-16 bg-green-900">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
@@ -127,11 +247,15 @@
         mismo.
       </p>
       <div class="max-w-md mx-auto bg-[rgba(255,165,0,1)] p-6 rounded-lg shadow-lg">
-        <form id="downloadForm" class="space-y-4">
+        <form id="downloadForm" class="space-y-4" aria-label="Formulario para descargar resumen gratuito">
+          <label for="email" class="sr-only">Correo electrónico</label>
           <input type="email" id="email" name="email" placeholder="Tu correo electrónico" required
-            class="w-full p-3 border border-green-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-900" />
+            class="w-full p-3 border border-green-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-900"
+            aria-describedby="email-help" />
+          <div id="email-help" class="sr-only">Ingresa tu correo para recibir el resumen gratuito del libro</div>
           <button type="submit"
-            class="w-full bg-green-900 text-[rgba(255,195,0,1)] px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold">
+            class="w-full bg-green-900 text-[rgba(255,195,0,1)] px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold"
+            aria-label="Descargar resumen gratuito del libro">
             📥 Descargar Resumen Gratis
           </button>
         </form>
@@ -162,6 +286,11 @@
 
         if (text.includes("OK")) {
           responseMsg.innerText = "¡Libro enviado! 📩 Revisa tu bandeja de entrada y también la carpeta de SPAM o Promociones.";
+          // Track successful download
+          gtag('event', 'conversion', {
+            'event_category': 'Lead Generation',
+            'event_label': 'Book Download Success'
+          });
           form.reset();
         } else {
           responseMsg.innerText = "Error: " + text;
@@ -178,11 +307,13 @@
   <section class="py-16 bg-[rgba(255,165,0,1)]">
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-8">
       <div class="md:w-1/2 h-96 flex items-center justify-center hover-scale">
-        <img src="images/mockup-book.png" alt="Libro Mockup" class="max-w-full h-auto" />
+        <img src="images/mockup-book.png"
+          alt="Libro Fundamentos Prácticos de la Ley de Atracción - Manifestación Consciente con Ciclo P-E-A-R"
+          class="max-w-full h-auto" loading="lazy" />
       </div>
       <div class="container mx-auto px-4">
         <h2 class="text-green-900 text-3xl md:text-4xl font-bold text-center mb-8 animate-slide-up">
-          Un método claro. Una guía práctica. Un despertar transformador.
+          Fundamentos Prácticos de la Ley de Atracción: Un método claro, una guía práctica
         </h2>
         <div class="max-w-3xl mx-auto text-center">
           <p class="text-green-900 mb-6">
@@ -208,12 +339,17 @@
             <!-- Amazon Book Button with QR -->
             <div class="flex flex-col items-center w-full sm:w-auto">
               <div class="w-24 h-24 sm:w-32 sm:h-32 bg-transparent rounded-lg mb-4 flex items-center justify-center">
-                <img src="images/qr_amazon_B0F925R43N.png" alt="Qr Amazon" class="max-w-full p-2 h-auto" />
+                <img src="images/qr_amazon_B0F925R43N.png"
+                  alt="Código QR para comprar libro Manifestación Consciente en Amazon" class="max-w-full p-2 h-auto"
+                  loading="lazy" />
               </div>
-              <a href="https://www.amazon.com/dp/B0F925R43N" target="_blank" class="bg-transparent">
-                <img src="images/btn_amazon.png" alt="Amazon Button" class="w-48 h-auto" />
+              <a href="https://www.amazon.com/dp/B0F925R43N" target="_blank" class="bg-transparent"
+                aria-label="Comprar libro en Amazon"
+                onclick="gtag('event', 'click', {'event_category': 'Amazon', 'event_label': 'Book Section'});">
+                <img src="images/btn_amazon.png" alt="Botón comprar libro Manifestación Consciente en Amazon"
+                  class="w-48 h-auto" loading="lazy" />
               </a>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -224,7 +360,7 @@
   <section class="py-16 bg-green-900">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
-        El Ciclo P-E-A-R: La fórmula para manifestar
+        El Ciclo P-E-A-R: La fórmula científica para manifestar conscientemente
       </h2>
       <p class="text-[rgba(255,165,0,1)] mb-6 max-w-2xl mx-auto">
         No es magia. Es método. Tus <strong>Pensamientos</strong> generan
@@ -232,7 +368,9 @@
         crean <strong>Resultados</strong> que refuerzan tu realidad.
       </p>
       <div class="h-64 bg-green-900 flex items-center justify-center mb-6 hover-scale">
-        <img src="images/ciclo_pear.png" alt="Qr App" class="h-64" />
+        <img src="images/ciclo_pear.png"
+          alt="Diagrama del Ciclo P-E-A-R: Pensamiento, Emoción, Acción, Resultado para manifestación consciente"
+          class="h-64" loading="lazy" />
       </div>
     </div>
   </section>
@@ -241,7 +379,7 @@
   <section class="py-16 bg-[rgba(255,165,0,1)]">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-green-900 text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
-        ¿Por qué funciona? Ciencia y sabiduría unidas
+        ¿Por qué funciona la Manifestación Consciente? Ciencia y sabiduría unidas
       </h2>
       <p class="text-green-900 mb-8 max-w-2xl mx-auto">
         No es magia, es un proceso validado por la neurociencia y la sabiduría
@@ -252,7 +390,7 @@
         <div class="bg-green-900 p-6 rounded-lg shadow-lg hover-scale">
           <span class="text-yellow-400 text-3xl mb-4 block">🧠</span>
           <h3 class="text-xl font-bold text-white mb-2">
-            Neuroplasticidad
+            Neuroplasticidad y Manifestación
           </h3>
           <p class="text-[rgba(255,165,0,1)]">
             Tus pensamientos reprograman tu cerebro, creando nuevos caminos
@@ -262,7 +400,7 @@
         <div class="bg-green-900 p-6 rounded-lg shadow-lg hover-scale">
           <span class="text-yellow-400 text-3xl mb-4 block">❤️</span>
           <h3 class="text-xl font-bold text-white mb-2">
-            Coherencia Cardíaca
+            Coherencia Cardíaca y Gratitud
           </h3>
           <p class="text-[rgba(255,165,0,1)]">
             La gratitud sincroniza tu corazón y mente, elevando tu vibración.
@@ -270,7 +408,7 @@
         </div>
         <div class="bg-green-900 p-6 rounded-lg shadow-lg hover-scale">
           <span class="text-yellow-400 text-3xl mb-4 block">⚡</span>
-          <h3 class="text-xl font-bold text-white mb-2">SARA</h3>
+          <h3 class="text-xl font-bold text-white mb-2">Sistema SARA y Enfoque Mental</h3>
           <p class="text-[rgba(255,165,0,1)]">
             Tu cerebro filtra oportunidades según lo que enfocas, guiado por
             tus intenciones.
@@ -285,7 +423,7 @@
     <div class="container mx-auto px-6 md:px-8 lg:px-12 flex flex-col md:flex-row items-center gap-8">
       <div class="md:w-1/2">
         <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
-          Convierte el conocimiento en hábito
+          App Manifestación Consciente: Convierte el conocimiento en hábito diario
         </h2>
         <p class="text-[rgba(255,165,0,1)] mb-6">
           La app <strong>Manifestación Consciente</strong> es tu compañero
@@ -301,16 +439,22 @@
         <!-- Google Play App Button with QR -->
         <div class="flex flex-row items-center w-full sm:w-auto">
           <div class="w-24 h-24 sm:w-32 sm:h-32 bg-white p-2 rounded-lg mb-4 flex items-center justify-center">
-            <img src="images/qr_app.png" alt="Qr App" class="max-w-full h-auto bg-white" />
+            <img src="images/qr_app.png"
+              alt="Código QR para descargar app Manifestación Consciente de Google Play Store"
+              class="max-w-full h-auto bg-white" loading="lazy" />
           </div>
           <a href="https://play.google.com/store/apps/details?id=com.ejs.affirmations" target="_blank"
-            class="bg-transparent">
-            <img src="images/btn_playstore.png" alt="Play Store Button" class="w-48 h-auto" />
+            class="bg-transparent" aria-label="Descargar app Manifestación Consciente"
+            onclick="gtag('event', 'click', {'event_category': 'Play Store', 'event_label': 'App Section'});">
+            <img src="images/btn_playstore.png" alt="Botón descargar app Manifestación Consciente en Google Play Store"
+              class="w-48 h-auto" loading="lazy" />
           </a>
         </div>
       </div>
       <div class="md:w-1/2 h-96 flex items-center justify-center hover-scale">
-        <img src="images/app_mockup.png" alt="App Mockup" class="max-w-full max-h-full object-contain" />
+        <img src="images/app_mockup.png"
+          alt="Mockup de la aplicación móvil Manifestación Consciente con afirmaciones y ejercicios del Ciclo P-E-A-R"
+          class="max-w-full max-h-full object-contain" loading="lazy" />
       </div>
     </div>
   </section>
@@ -320,7 +464,7 @@
     <div class="container mx-auto px-4">
       <div class="text-center mb-12">
         <h2 class="text-green-900 text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
-          Visualiza. Vibra. Despierta tu poder.
+          Serie de Videos: Visualiza, Vibra y Despierta tu Poder Interior
         </h2>
         <p class="text-green-700 mb-6 max-w-2xl mx-auto">
           Nuestra serie estilo cómic lleva los conceptos del libro a un
@@ -418,7 +562,9 @@
       </div>
       <div class="text-center mt-8">
         <a href="https://www.youtube.com/playlist?list=PLQk7j56KMwG7I9OOomLRcedqibaEDosaR" target="_blank"
-          class="bg-green-900 text-[rgba(255,165,0,1)] px-6 py-3 rounded-lg hover:bg-green-700 transition inline-flex items-center">
+          class="bg-green-900 text-[rgba(255,165,0,1)] px-6 py-3 rounded-lg hover:bg-green-700 transition inline-flex items-center"
+          aria-label="Ver playlist completa de videos de Manifestación Consciente en YouTube"
+          onclick="gtag('event', 'click', {'event_category': 'YouTube', 'event_label': 'Video Playlist'});">
           🎥 Ver todos los episodios en YouTube
         </a>
       </div>
@@ -429,7 +575,7 @@
   <section class="py-16  bg-green-900">
     <div class="container mx-auto px-4 text-center">
       <h2 class="text-white text-3xl md:text-4xl font-bold mb-4 animate-slide-up">
-        Historias reales, resultados reales
+        Testimonios de Manifestación Consciente: Historias reales, resultados reales
       </h2>
       <p class="text-[rgba(255,165,0,1)] mb-8 max-w-2xl mx-auto">
         Personas como tú han transformado sus vidas con el Ciclo P-E-A-R y la
@@ -544,10 +690,10 @@
   </section> -->
 
   <!-- FAQ Section Refinada -->
-  <!-- FAQ Section Refinada -->
   <section class="py-16 bg-[rgba(255,165,0,1)]">
     <div class="container mx-auto px-4">
-      <h2 class="text-green-900 text-3xl md:text-4xl font-bold text-center mb-10">Preguntas Frecuentes</h2>
+      <h2 class="text-green-900 text-3xl md:text-4xl font-bold text-center mb-10">Preguntas Frecuentes sobre
+        Manifestación Consciente y Ley de Atracción</h2>
       <div class="max-w-3xl mx-auto space-y-6">
 
         <div class="bg-green-900 p-6 rounded-lg shadow">
