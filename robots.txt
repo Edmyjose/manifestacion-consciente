@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://manifestacionconsciente.com/sitemap.xml
+Sitemap: https://manifestavida.lat/sitemap.xml
 
 # Disallow common non-content directories
 Disallow: /admin/
